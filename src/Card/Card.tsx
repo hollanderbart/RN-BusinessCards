@@ -1,25 +1,31 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { BusinessCard } from '../businessCards';
 import { colors } from '../colors';
 
 const Card = ({
   data: { name, title, company, email, favorite_emoji },
+  onLongPress,
+  onPressOut,
 }: {
   data: BusinessCard;
+  onLongPress: () => void;
+  onPressOut: () => void;
 }) => {
   return (
-    <View style={styles.cardContainer}>
-      <View style={styles.cardInfo}>
-        <Text style={styles.name}>{name}</Text>
-        <Text>{title}</Text>
-        <Text>{company}</Text>
-        <Text>{email}</Text>
+    <Pressable onLongPress={onLongPress} onPressOut={onPressOut}>
+      <View style={styles.cardContainer}>
+        <View style={styles.cardInfo}>
+          <Text style={styles.name}>{name}</Text>
+          <Text>{title}</Text>
+          <Text>{company}</Text>
+          <Text>{email}</Text>
+        </View>
+        <View style={styles.emojiContainer}>
+          <Text style={styles.emoji}>{favorite_emoji}</Text>
+        </View>
       </View>
-      <View style={styles.emojiContainer}>
-        <Text style={styles.emoji}>{favorite_emoji}</Text>
-      </View>
-    </View>
+    </Pressable>
   );
 };
 
@@ -47,7 +53,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   emoji: {
-    fontSize: 24,
+    fontSize: 32,
   },
 });
 
