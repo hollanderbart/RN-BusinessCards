@@ -2,18 +2,25 @@ import React from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { BusinessCard } from '../businessCards';
 import { colors } from '../colors';
+import { ScaledPressable } from '../ScaledPressable/ScaledPressable';
 
 const Card = ({
   data: { name, title, company, email, favorite_emoji },
   onLongPress,
   onPressOut,
+  isScalingActive,
 }: {
   data: BusinessCard;
   onLongPress: () => void;
   onPressOut: () => void;
+  isScalingActive: boolean;
 }) => {
   return (
-    <Pressable onLongPress={onLongPress} onPressOut={onPressOut}>
+    <ScaledPressable
+      isScalingActive={isScalingActive}
+      onLongPress={onLongPress}
+      onPressOut={onPressOut}
+    >
       <View style={styles.cardContainer}>
         <View style={styles.cardInfo}>
           <Text style={styles.name}>{name}</Text>
@@ -25,7 +32,7 @@ const Card = ({
           <Text style={styles.emoji}>{favorite_emoji}</Text>
         </View>
       </View>
-    </Pressable>
+    </ScaledPressable>
   );
 };
 

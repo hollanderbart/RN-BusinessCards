@@ -1,4 +1,5 @@
 export type BusinessCard = {
+  id: number;
   name: string;
   title: string;
   company: string;
@@ -8,6 +9,7 @@ export type BusinessCard = {
 
 export const businessCards: BusinessCard[] = [
   {
+    id: 1,
     name: 'Alice Johnson',
     title: 'Marketing Manager',
     company: 'Global Corp.',
@@ -15,6 +17,7 @@ export const businessCards: BusinessCard[] = [
     favorite_emoji: '🌟',
   },
   {
+    id: 2,
     name: 'Bob Smith',
     title: 'Product Designer',
     company: 'InnovateTech',
@@ -22,6 +25,7 @@ export const businessCards: BusinessCard[] = [
     favorite_emoji: '😎',
   },
   {
+    id: 3,
     name: 'Eva Williams',
     title: 'HR Manager',
     company: 'PeopleLink',
@@ -29,6 +33,7 @@ export const businessCards: BusinessCard[] = [
     favorite_emoji: '❤️',
   },
   {
+    id: 4,
     name: 'David Lee',
     title: 'Financial Analyst',
     company: 'FinanciCorp',
@@ -36,6 +41,7 @@ export const businessCards: BusinessCard[] = [
     favorite_emoji: '💼',
   },
   {
+    id: 5,
     name: 'Grace Taylor',
     title: 'Sales Representative',
     company: 'SalesPro',
@@ -43,6 +49,7 @@ export const businessCards: BusinessCard[] = [
     favorite_emoji: '💰',
   },
   {
+    id: 6,
     name: 'Charlie Brown',
     title: 'Software Engineer',
     company: 'CodeTech',
@@ -50,6 +57,7 @@ export const businessCards: BusinessCard[] = [
     favorite_emoji: '💻',
   },
   {
+    id: 7,
     name: 'Olivia Miller',
     title: 'Graphic Designer',
     company: 'DesignMasters',
@@ -57,6 +65,7 @@ export const businessCards: BusinessCard[] = [
     favorite_emoji: '🎨',
   },
   {
+    id: 8,
     name: 'Michael Turner',
     title: 'Product Manager',
     company: 'ProductWorld',
@@ -64,6 +73,7 @@ export const businessCards: BusinessCard[] = [
     favorite_emoji: '🚀',
   },
   {
+    id: 9,
     name: 'Sophia Reed',
     title: 'Customer Support',
     company: 'SupportHub',
@@ -71,6 +81,7 @@ export const businessCards: BusinessCard[] = [
     favorite_emoji: '🤝',
   },
   {
+    id: 10,
     name: 'William Clark',
     title: 'CEO',
     company: 'Success Inc.',

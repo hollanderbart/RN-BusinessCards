@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import DragList, { DragListRenderItemInfo } from 'react-native-draglist';
 import { StyleSheet } from 'react-native';
 import Card from '../Card/Card';
@@ -9,17 +9,47 @@ const renderItem = ({
   item,
   onDragStart,
   onDragEnd,
+  isActive,
 }: DragListRenderItemInfo<BusinessCard>) => (
-  <Card data={item} onLongPress={onDragStart} onPressOut={onDragEnd} />
+  <Card
+    data={item}
+    isScalingActive={isActive}
+    onLongPress={onDragStart}
+    onPressOut={onDragEnd}
+  />
 );
 
 function BusinessCardList(): JSX.Element {
+  const [sorting, setSorting] = useState<number[]>(
+    businessCards.map((card) => card.id),
+  );
+
+  const sortedBusinessCards = useMemo(
+    () =>
+      businessCards.sort((a: BusinessCard, b: BusinessCard) => {
+        const aIndex = sorting.indexOf(a.id);
+        const bIndex = sorting.indexOf(b.id);
+        return aIndex - bIndex;
+      }),
+    [sorting],
+  );
+
+  const onReordered = (fromIndex: number, toIndex: number) => {
+    setSorting((prev) => {
+      const newSorting = [...prev];
+      const [removed] = newSorting.splice(fromIndex, 1);
+      newSorting.splice(toIndex, 0, removed);
+      return newSorting;
+    });
+  };
+
   return (
     <DragList
       contentContainerStyle={styles.dragListContainer}
-      data={businessCards}
-      keyExtractor={(item: BusinessCard) => item.name}
+      data={sortedBusinessCards}
+      keyExtractor={(item: BusinessCard) => item.id}
       renderItem={renderItem}
+      onReordered={onReordered}
       style={styles.dragListStyle}
     />
   );
