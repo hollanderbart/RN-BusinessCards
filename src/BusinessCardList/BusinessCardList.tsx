@@ -8,16 +8,19 @@ import { colors } from '../colors';
 const renderItem = ({
   item,
   onDragStart,
+  onStartDrag,
   onDragEnd,
   isActive,
-}: DragListRenderItemInfo<BusinessCard>) => (
-  <Card
-    data={item}
-    isScalingActive={isActive}
-    onLongPress={onDragStart}
-    onPressOut={onDragEnd}
-  />
-);
+}: DragListRenderItemInfo<BusinessCard>) => {
+  return (
+    <Card
+      data={item}
+      isScalingActive={isActive}
+      onLongPress={onStartDrag}
+      onPressOut={onDragEnd}
+    />
+  );
+};
 
 function BusinessCardList(): JSX.Element {
   const [sorting, setSorting] = useState<number[]>(
@@ -47,7 +50,7 @@ function BusinessCardList(): JSX.Element {
     <DragList
       contentContainerStyle={styles.dragListContainer}
       data={sortedBusinessCards}
-      keyExtractor={(item: BusinessCard) => item.id}
+      keyExtractor={(item: BusinessCard) => `${item.id}`}
       renderItem={renderItem}
       onReordered={onReordered}
       style={styles.dragListStyle}
